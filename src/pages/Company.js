@@ -25,6 +25,7 @@ import {
 } from '@mui/material';
 // components
 import Page from '../components/Page';
+import AddCompany from '../components/AddCompany';
 import Label from '../components/Label';
 import Scrollbar from '../components/Scrollbar';
 import SearchNotFound from '../components/SearchNotFound';
@@ -176,12 +177,7 @@ export default function Company() {
             aria-describedby="modal-modal-description"
           >
             <Box sx={style}>
-              <Typography id="modal-modal-title" variant="h6" component="h2">
-                Text in a modal
-              </Typography>
-              <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-              </Typography>
+              <AddCompany />
             </Box>
           </Modal>
         </Stack>
