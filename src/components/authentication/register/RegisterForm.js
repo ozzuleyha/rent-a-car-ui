@@ -44,21 +44,21 @@ export default function RegisterForm() {
       console.log(values);
       const data = values;
 
-      fetch('http://localhost:38175/api/User', {
-        method: 'POST', // or 'PUT'
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log(data);
-          console.log('Success:', data);
-        })
-        .catch((error) => {
-          console.error('Error:', error);
-        });
+      // fetch('http://localhost:38175/api/User', {
+      //   method: 'POST', // or 'PUT'
+      //   headers: {
+      //     'Content-Type': 'application/json'
+      //   },
+      //   body: JSON.stringify(data)
+      // })
+      //   .then((response) => response.json())
+      //   .then((data) => {
+      //     console.log(data);
+      //     console.log('Success:', data);
+      //   })
+      //   .catch((error) => {
+      //     console.error('Error:', error);
+      //   });
       // navigate('/dashboard', { replace: true });
     }
   });
