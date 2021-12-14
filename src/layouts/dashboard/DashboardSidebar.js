@@ -96,26 +96,26 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
         >
           <Box
             component="img"
-            src="/static/illustrations/illustration_avatar.png"
-            sx={{ width: 100, position: 'absolute', top: -50 }}
+            src="/static/illustrations/illustration_avatar.jpeg"
+            sx={{ width: 100, position: 'absolute', top: -50, borderRadius: 10 }}
           />
 
           <Box sx={{ textAlign: 'center' }}>
             <Typography gutterBottom variant="h6">
-              Get more?
+              Beni mi merak ettiniz?
             </Typography>
             <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-              From only $69
+              LinkedIn hesabımdayım!
             </Typography>
           </Box>
 
           <Button
             fullWidth
-            href="https://material-ui.com/store/items/minimal-dashboard/"
+            href="https://www.linkedin.com/in/ozzuleyha/"
             target="_blank"
             variant="contained"
           >
-            Upgrade to Pro
+            Bana Ulaşın
           </Button>
         </Stack>
       </Box>
