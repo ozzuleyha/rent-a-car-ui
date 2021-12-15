@@ -2,6 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import Input from '@mui/material/Input';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -9,7 +10,6 @@ import Select from '@mui/material/Select';
 
 export default function AddCompany() {
   const [airbag, setAirbag] = React.useState('');
-
   const handleChange = (event) => {
     setAirbag(event.target.value);
   };
@@ -22,6 +22,7 @@ export default function AddCompany() {
       noValidate
       autoComplete="off"
     >
+      <Input accept="image/*" id="icon-button-file" type="file" />
       <TextField id="outlined-basic" label="Car Name" variant="outlined" />
       <TextField id="outlined-basic" label="Car Model" variant="outlined" />
       <TextField id="outlined-basic" label="Rent Price" variant="outlined" />

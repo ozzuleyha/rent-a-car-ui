@@ -29,8 +29,9 @@ export default function LoginForm() {
         setUsername('');
         setPassword('');
       } else {
-        console.log(response.data[0]);
+        console.log(response.data);
         if (response.data[0].UserRoleId === 1) {
+          localStorage.setItem('userInformations', JSON.stringify(response.data[0]));
           // bu bir müşteri
           navigate('/dashboard/user/cars', { replace: true });
         } else if (response.data[0].UserRoleId === 2) {
