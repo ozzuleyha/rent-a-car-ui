@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import PropTypes from 'prop-types';
 import { useEffect } from 'react';
 import { Link as RouterLink, useLocation } from 'react-router-dom';
@@ -68,9 +69,15 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
             <Avatar src={account.photoURL} alt="photoURL" />
             <Box sx={{ ml: 2 }}>
               <Typography variant="subtitle2" sx={{ color: 'text.primary' }}>
-                {`${JSON.parse(localStorage.getItem('userInformations')).CustomerName} ${
-                  JSON.parse(localStorage.getItem('userInformations')).CustomerSurname
-                }`}
+                {JSON.parse(localStorage.getItem('userInformations')).UserRoleId === 1
+                  ? `${JSON.parse(localStorage.getItem('userInformations')).CustomerName} ${
+                      JSON.parse(localStorage.getItem('userInformations')).CustomerSurname
+                    }`
+                  : JSON.parse(localStorage.getItem('userInformations')).UserRoleId === 2
+                  ? `${JSON.parse(localStorage.getItem('userInformations')).EmployeeName} ${
+                      JSON.parse(localStorage.getItem('userInformations')).EmployeeSurname
+                    }`
+                  : 'Admin Panel'}
               </Typography>
               <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                 {account.role}

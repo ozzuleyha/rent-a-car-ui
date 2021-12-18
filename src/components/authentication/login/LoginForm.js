@@ -35,9 +35,11 @@ export default function LoginForm() {
           // bu bir müşteri
           navigate('/dashboard/user/cars', { replace: true });
         } else if (response.data[0].UserRoleId === 2) {
+          localStorage.setItem('userInformations', JSON.stringify(response.data[0]));
           // bu bir çalışan
           navigate('/dashboard/employee/rent-requests', { replace: true });
         } else {
+          localStorage.setItem('userInformations', JSON.stringify(response.data[0]));
           // bu bir admin
           navigate('/dashboard/admin/app', { replace: true });
         }

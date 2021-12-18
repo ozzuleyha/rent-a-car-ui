@@ -1,4 +1,5 @@
 import * as Yup from 'yup';
+import * as React from 'react';
 import { useState } from 'react';
 import { Icon } from '@iconify/react';
 import { useFormik, Form, FormikProvider } from 'formik';
@@ -8,16 +9,24 @@ import { useNavigate } from 'react-router-dom';
 // material
 import { Stack, TextField, IconButton, InputAdornment } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
+import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
 
 // ----------------------------------------------------------------------
 
 export default function RegisterForm() {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
+  const [value, setValue] = React.useState(new Date());
+
+  const handleChange = (newValue) => {
+    setValue(newValue);
+  };
 
   const RegisterSchema = Yup.object().shape({
     UserName: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('User name required'),
-    BirthDay: Yup.date().required('Birthday required'),
+    Birthday: Yup.date().required('Birthday required'),
     DrivingLicenceDate: Yup.date().required('Driving license date required'),
     FirstName: Yup.string()
       .min(2, 'Too Short!')
@@ -36,7 +45,7 @@ export default function RegisterForm() {
       Email: '',
       Password: '',
       DrivingLicenceDate: '',
-      BirthDay: ''
+      Birthday: ''
     },
     validationSchema: RegisterSchema,
     onSubmit: (values) => {
@@ -122,21 +131,32 @@ export default function RegisterForm() {
             helperText={touched.Password && errors.Password}
           />
           <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
-            <TextField
-              fullWidth
-              label="Birth Day"
-              {...getFieldProps('BirthDay')}
-              error={Boolean(touched.BirthDay && errors.BirthDay)}
-              helperText={touched.BirthDay && errors.BirthDay}
-            />
-
-            <TextField
-              fullWidth
-              label="Driving License Date"
-              {...getFieldProps('DrivingLicenceDate')}
-              error={Boolean(touched.DrivingLicenceDate && errors.DrivingLicenceDate)}
-              helperText={touched.DrivingLicenceDate && errors.DrivingLicenceDate}
-            />
+            <LocalizationProvider dateAdapter={AdapterDateFns}>
+              <DesktopDatePicker
+                fullWidth
+                label="Birthday"
+                {...getFieldProps('Birthday')}
+                error={Boolean(touched.Birthday && errors.Birthday)}
+                helperText={touched.Birthday && errors.Birthday}
+                inputFormat="MM/dd/yyyy"
+                value={value}
+                onChange={handleChange}
+                renderInput={(params) => <TextField {...params} />}
+              />
+            </LocalizationProvider>
+            <LocalizationProvider dateAdapter={AdapterDateFns}>
+              <DesktopDatePicker
+                fullWidth
+                label="Driving License Date"
+                {...getFieldProps('DrivingLicenceDate')}
+                error={Boolean(touched.DrivingLicenceDate && errors.DrivingLicenceDate)}
+                helperText={touched.DrivingLicenceDate && errors.DrivingLicenceDate}
+                inputFormat="MM/dd/yyyy"
+                value={value}
+                onChange={handleChange}
+                renderInput={(params) => <TextField {...params} />}
+              />
+            </LocalizationProvider>
           </Stack>
 
           <LoadingButton

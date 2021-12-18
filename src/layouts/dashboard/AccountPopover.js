@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 // material
@@ -57,9 +58,15 @@ export default function AccountPopover() {
       >
         <Box sx={{ my: 1.5, px: 2.5 }}>
           <Typography variant="subtitle1" noWrap>
-            {`${JSON.parse(localStorage.getItem('userInformations')).CustomerName} ${
-              JSON.parse(localStorage.getItem('userInformations')).CustomerSurname
-            }`}
+            {JSON.parse(localStorage.getItem('userInformations')).UserRoleId === 1
+              ? `${JSON.parse(localStorage.getItem('userInformations')).CustomerName} ${
+                  JSON.parse(localStorage.getItem('userInformations')).CustomerSurname
+                }`
+              : JSON.parse(localStorage.getItem('userInformations')).UserRoleId === 2
+              ? `${JSON.parse(localStorage.getItem('userInformations')).EmployeeName} ${
+                  JSON.parse(localStorage.getItem('userInformations')).EmployeeSurname
+                }`
+              : 'Admin Panel'}
           </Typography>
         </Box>
 
