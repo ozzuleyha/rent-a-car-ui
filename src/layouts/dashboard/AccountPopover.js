@@ -66,7 +66,7 @@ export default function AccountPopover() {
               ? `${JSON.parse(localStorage.getItem('userInformations')).EmployeeName} ${
                   JSON.parse(localStorage.getItem('userInformations')).EmployeeSurname
                 }`
-              : 'Admin Panel'}
+              : 'Çınar AYDIN'}
           </Typography>
         </Box>
 

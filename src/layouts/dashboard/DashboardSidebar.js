@@ -77,7 +77,7 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
                   ? `${JSON.parse(localStorage.getItem('userInformations')).EmployeeName} ${
                       JSON.parse(localStorage.getItem('userInformations')).EmployeeSurname
                     }`
-                  : 'Admin Panel'}
+                  : 'Çınar AYDIN'}
               </Typography>
               <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                 {account.role}

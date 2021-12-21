@@ -15,15 +15,18 @@ class Api {
   login = (username, password) =>
     this.axiosInstance.post('User/login', { UserName: username, Password: password });
 
-  register = (username, firstName, lastName, Email, password, drivingLicenseDate, Birthday) =>
-    this.axiosInstance.post('auth/register', {
+  addUser = (username, password) =>
+    this.axiosInstance.post('User/add-user', {
       UserName: username,
-      CustomerName: firstName,
-      CustomerSurname: lastName,
-      CustomerEmail: Email,
       Password: password,
-      DrivingLicenseDate: drivingLicenseDate,
-      BirthDay: Birthday
+      UserRoleId: 1
+    });
+
+  addCustomer = (firstname, lastname, email) =>
+    this.axiosInstance.post('Customer/add-customer', {
+      CustomerName: firstname,
+      CustomerSurname: lastname,
+      CustomerEmail: email
     });
 }
 

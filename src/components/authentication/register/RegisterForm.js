@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 // material
 import { Stack, TextField, IconButton, InputAdornment } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
+import Api from '../../../utils/Api';
 // import DatePicker from '@mui/lab/DatePicker';
 // import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
 // import LocalizationProvider from '@mui/lab/LocalizationProvider';
@@ -33,6 +34,13 @@ export default function RegisterForm() {
 
   const handleSubmit = () => {
     console.log(username, password, firstname, lastname, email);
+    Api.addUser(username, password).then((response) => {
+      const userInformation = { UserRoleId: 1, CustomerName: firstname, CustomerSurname: lastname };
+      console.log(response.data);
+      Api.addCustomer(firstname, lastname, email);
+      navigate('/dashboard/user/cars', { replace: true });
+      localStorage.setItem('userInformations', JSON.stringify(userInformation));
+    });
   };
   return (
     <Stack>
