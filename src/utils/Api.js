@@ -28,6 +28,14 @@ class Api {
       CustomerSurname: lastname,
       CustomerEmail: email
     });
+
+  getCustomerCount = () => this.axiosInstance.get('Customer');
+
+  getEmployeeCount = () => this.axiosInstance.get('Employee');
+
+  getCompanyCount = () => this.axiosInstance.get('Company');
+
+  getCarCount = () => this.axiosInstance.get('Car');
 }
 
 export default new Api();
