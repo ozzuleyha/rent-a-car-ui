@@ -14,27 +14,44 @@ const sidebarConfig = [
   {
     title: 'dashboard',
     path: '/dashboard/admin/app',
-    icon: getIcon(pieChart2Fill)
+    icon: getIcon(pieChart2Fill),
+    userRole: 3
   },
   {
-    title: 'user / rent-requests',
+    title: 'users',
     path: '/dashboard/admin/user',
-    icon: getIcon(peopleFill)
+    icon: getIcon(peopleFill),
+    userRole: 3
   },
   {
-    title: 'company',
+    title: 'companies',
     path: '/dashboard/admin/company',
-    icon: getIcon(companyFill)
+    icon: getIcon(companyFill),
+    userRole: 3
   },
   {
-    title: 'employee',
+    title: 'employees',
     path: '/dashboard/admin/employee',
-    icon: getIcon(flashFill)
+    icon: getIcon(flashFill),
+    userRole: 3
   },
   {
     title: 'Cars',
     path: '/dashboard/employee/cars',
-    icon: getIcon(carFill)
+    icon: getIcon(carFill),
+    userRole: 2
+  },
+  {
+    title: 'Rent-requests',
+    path: '/dashboard/employee/rent-requests',
+    icon: getIcon(peopleFill),
+    userRole: 2
+  },
+  {
+    title: 'Cars',
+    path: '/dashboard/user/cars',
+    icon: getIcon(peopleFill),
+    userRole: 1
   },
   {
     title: 'login',

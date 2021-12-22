@@ -52,7 +52,8 @@ NavItem.propTypes = {
 function NavItem({ item, active }) {
   const theme = useTheme();
   const isActiveRoot = active(item.path);
-  const { title, path, icon, info, children } = item;
+  const { title, path, icon, userRole, info, children } = item;
+  console.log(JSON.parse(localStorage.getItem('userInformations')).UserRoleId);
   const [open, setOpen] = useState(isActiveRoot);
 
   const handleOpen = () => {
@@ -134,7 +135,7 @@ function NavItem({ item, active }) {
     );
   }
 
-  return (
+  return JSON.parse(localStorage.getItem('userInformations')).UserRoleId === userRole ? (
     <ListItemStyle
       component={RouterLink}
       to={path}
@@ -146,7 +147,7 @@ function NavItem({ item, active }) {
       <ListItemText disableTypography primary={title} />
       {info && info}
     </ListItemStyle>
-  );
+  ) : null;
 }
 
 NavSection.propTypes = {

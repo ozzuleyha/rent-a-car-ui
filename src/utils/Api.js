@@ -29,13 +29,21 @@ class Api {
       CustomerEmail: email
     });
 
-  getCustomerCount = () => this.axiosInstance.get('Customer');
+  getCustomerCount = () => this.axiosInstance.get('Customer/customer-count');
 
-  getEmployeeCount = () => this.axiosInstance.get('Employee');
+  getEmployeeCount = () => this.axiosInstance.get('Employee/employee-count');
 
-  getCompanyCount = () => this.axiosInstance.get('Company');
+  getCompanyCount = () => this.axiosInstance.get('Company/company-count');
 
-  getCarCount = () => this.axiosInstance.get('Car');
+  getCarCount = () => this.axiosInstance.get('Car/car-count');
+
+  getCustomerList = () => this.axiosInstance.get('Customer/customer-list');
+
+  getEmployeeList = () => this.axiosInstance.get('Employee/employee-list');
+
+  getCompanyList = () => this.axiosInstance.get('Company/company-list');
+
+  getCarList = () => this.axiosInstance.get('Car/Car-list');
 }
 
 export default new Api();
