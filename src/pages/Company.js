@@ -1,8 +1,9 @@
+/* eslint-disable import/no-unresolved */
 import { filter } from 'lodash';
 import * as React from 'react';
 import { Icon } from '@iconify/react';
 import { sentenceCase } from 'change-case';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import plusFill from '@iconify/icons-eva/plus-fill';
 import { Link as RouterLink } from 'react-router-dom';
 // material
@@ -24,6 +25,7 @@ import {
   TablePagination
 } from '@mui/material';
 // components
+import Api from 'src/utils/Api';
 import Page from '../components/Page';
 import AddCompany from '../components/AddCompany';
 import Label from '../components/Label';
@@ -52,12 +54,10 @@ const style = {
 // ----------------------------------------------------------------------
 
 const TABLE_HEAD = [
-  { id: 'name', label: 'Name', alignRight: false },
-  { id: 'company', label: 'Company', alignRight: false },
-  { id: 'role', label: 'Role', alignRight: false },
-  { id: 'isVerified', label: 'Verified', alignRight: false },
-  { id: 'status', label: 'Status', alignRight: false },
-  { id: '' }
+  { id: 'id', label: 'ID', alignRight: false },
+  { id: 'companyname', label: 'Company Name', alignRight: false },
+  { id: 'companycity', label: 'Company City', alignRight: false },
+  { id: 'companyadress', label: 'Company Adress', alignRight: false }
 ];
 
 // ----------------------------------------------------------------------
@@ -98,9 +98,21 @@ export default function Company() {
   const [page, setPage] = useState(0);
   const [order, setOrder] = useState('asc');
   const [selected, setSelected] = useState([]);
-  const [orderBy, setOrderBy] = useState('name');
+  const [orderBy, setOrderBy] = useState('id');
   const [filterName, setFilterName] = useState('');
   const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [companies, setCompanies] = useState([]);
+
+  const loadData = () => {
+    Api.getCompanyList().then((response) => {
+      console.log(response.data);
+      setCompanies(response.data);
+    });
+  };
+  useEffect(() => {
+    console.log('hayat');
+    loadData();
+  }, []);
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -152,7 +164,7 @@ export default function Company() {
 
   const filteredUsers = applySortFilter(USERLIST, getComparator(order, orderBy), filterName);
 
-  const isUserNotFound = filteredUsers.length === 0;
+  const isUserNotFound = companies.length === 0;
 
   return (
     <Page title="User | Minimal-UI">
@@ -202,39 +214,30 @@ export default function Company() {
                   onSelectAllClick={handleSelectAllClick}
                 />
                 <TableBody>
-                  {filteredUsers
-                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                    .map((row) => {
-                      const { id, name, role, status, company, avatarUrl, isVerified } = row;
-                      const isItemSelected = selected.indexOf(name) !== -1;
+                  {companies.map((row) => {
+                    const { id, CompanyName, CompanyCity, CompanyAdress } = row;
+                    const isItemSelected = selected.indexOf(CompanyName) !== -1;
 
-                      return (
-                        <TableRow
-                          hover
-                          key={id}
-                          tabIndex={-1}
-                          role="checkbox"
-                          selected={isItemSelected}
-                          aria-checked={isItemSelected}
-                        >
-                          <TableCell padding="checkbox">
-                            <Checkbox
-                              checked={isItemSelected}
-                              onChange={(event) => handleClick(event, name)}
-                            />
-                          </TableCell>
-                          <TableCell component="th" scope="row" padding="none">
-                            <Stack direction="row" alignItems="center" spacing={2}>
-                              <Avatar alt={name} src={avatarUrl} />
-                              <Typography variant="subtitle2" noWrap>
-                                {name}
-                              </Typography>
-                            </Stack>
-                          </TableCell>
-                          <TableCell align="left">{company}</TableCell>
-                          <TableCell align="left">{role}</TableCell>
-                          <TableCell align="left">{isVerified ? 'Yes' : 'No'}</TableCell>
-                          <TableCell align="left">
+                    return (
+                      <TableRow
+                        hover
+                        key={id}
+                        tabIndex={-1}
+                        role="checkbox"
+                        selected={isItemSelected}
+                        aria-checked={isItemSelected}
+                      >
+                        <TableCell padding="checkbox">
+                          <Checkbox
+                            checked={isItemSelected}
+                            onChange={(event) => handleClick(event, CompanyName)}
+                          />
+                        </TableCell>
+                        <TableCell align="left">{id}</TableCell>
+                        <TableCell align="left">{CompanyName}</TableCell>
+                        <TableCell align="left">{CompanyCity}</TableCell>
+                        <TableCell align="left">{CompanyAdress}</TableCell>
+                        {/* <TableCell align="left">
                             <Label
                               variant="ghost"
                               color={(status === 'banned' && 'error') || 'success'}
@@ -245,10 +248,10 @@ export default function Company() {
 
                           <TableCell align="right">
                             <CompanyMoreMenu />
-                          </TableCell>
-                        </TableRow>
-                      );
-                    })}
+                          </TableCell> */}
+                      </TableRow>
+                    );
+                  })}
                   {emptyRows > 0 && (
                     <TableRow style={{ height: 53 * emptyRows }}>
                       <TableCell colSpan={6} />
