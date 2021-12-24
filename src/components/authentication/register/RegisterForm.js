@@ -34,7 +34,7 @@ export default function RegisterForm() {
 
   const handleSubmit = () => {
     console.log(username, password, firstname, lastname, email);
-    Api.addUser(username, password).then((response) => {
+    Api.addUserCustomer(username, password).then((response) => {
       const userInformation = { UserRoleId: 1, CustomerName: firstname, CustomerSurname: lastname };
       console.log(response.data);
       Api.addCustomer(firstname, lastname, email);

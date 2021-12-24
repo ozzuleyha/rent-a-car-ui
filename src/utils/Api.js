@@ -15,11 +15,18 @@ class Api {
   login = (username, password) =>
     this.axiosInstance.post('User/login', { UserName: username, Password: password });
 
-  addUser = (username, password) =>
+  addUserCustomer = (username, password) =>
     this.axiosInstance.post('User/add-user', {
       UserName: username,
       Password: password,
       UserRoleId: 1
+    });
+
+  addUserEmployee = (username, password) =>
+    this.axiosInstance.post('User/add-user', {
+      UserName: username,
+      Password: password,
+      UserRoleId: 2
     });
 
   addCustomer = (firstname, lastname, email) =>
@@ -27,6 +34,20 @@ class Api {
       CustomerName: firstname,
       CustomerSurname: lastname,
       CustomerEmail: email
+    });
+
+  addEmployee = (employeeName, employeeSurname, companyId) =>
+    this.axiosInstance.post('Employee/add-employee', {
+      EmployeeName: employeeName,
+      EmployeeSurname: employeeSurname,
+      CompanyId: companyId
+    });
+
+  addCompany = (companyName, companyCity, companyAdress) =>
+    this.axiosInstance.post('Company/add-company', {
+      CompanyName: companyName,
+      CompanyCity: companyCity,
+      CompanyAdress: companyAdress
     });
 
   getCustomerCount = () => this.axiosInstance.get('Customer/customer-count');

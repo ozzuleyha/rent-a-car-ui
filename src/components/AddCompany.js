@@ -1,9 +1,21 @@
-import * as React from 'react';
+/* eslint-disable import/no-unresolved */
+import { useState } from 'react';
+import Api from 'src/utils/Api';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 
 export default function AddCompany() {
+  const [companyName, setCompanyName] = useState('');
+  const [companyCity, setCompanyCity] = useState('');
+  const [companyAdress, setCompanyAdress] = useState('');
+
+  const handleSubmit = () => {
+    Api.addCompany(companyName, companyCity, companyAdress).then((response) => {
+      window.location.reload();
+    });
+  };
+
   return (
     <Box
       component="form"
@@ -13,10 +25,30 @@ export default function AddCompany() {
       noValidate
       autoComplete="off"
     >
-      <TextField id="outlined-basic" label="Company Name" variant="outlined" />
-      <TextField id="outlined-basic" label="Company City" variant="outlined" />
-      <TextField id="outlined-basic" label="Company Adress" variant="outlined" />
-      <Button variant="contained">Send</Button>
+      <TextField
+        id="outlined-basic"
+        label="Company Name"
+        variant="outlined"
+        value={companyName}
+        onChange={(event) => setCompanyName(event.target.value)}
+      />
+      <TextField
+        id="outlined-basic"
+        label="Company City"
+        variant="outlined"
+        value={companyCity}
+        onChange={(event) => setCompanyCity(event.target.value)}
+      />
+      <TextField
+        id="outlined-basic"
+        label="Company Adress"
+        variant="outlined"
+        value={companyAdress}
+        onChange={(event) => setCompanyAdress(event.target.value)}
+      />
+      <Button variant="contained" onClick={() => handleSubmit()}>
+        Send
+      </Button>
     </Box>
   );
 }
