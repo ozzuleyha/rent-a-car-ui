@@ -49,7 +49,7 @@ export default function EmployeeMoreMenu(props) {
     setEditOpen(false);
   };
 
-  const handleSubmit = () => {
+  const handleDeleteSubmit = () => {
     Api.deleteEmployee(props.employeeId).then((response) => {
       window.location.reload();
     });
@@ -95,7 +95,7 @@ export default function EmployeeMoreMenu(props) {
             <Button autoFocus onClick={handleClose}>
               Disagree
             </Button>
-            <Button onClick={handleSubmit} autoFocus>
+            <Button onClick={handleDeleteSubmit} autoFocus>
               Agree
             </Button>
           </DialogActions>

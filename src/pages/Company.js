@@ -247,7 +247,7 @@ export default function Company() {
                           </TableCell> */}
 
                         <TableCell align="right">
-                          <CompanyMoreMenu />
+                          <CompanyMoreMenu companyId={id} />
                         </TableCell>
                       </TableRow>
                     );

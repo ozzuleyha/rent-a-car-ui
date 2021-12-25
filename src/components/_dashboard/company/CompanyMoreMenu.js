@@ -17,6 +17,7 @@ import moreVerticalFill from '@iconify/icons-eva/more-vertical-fill';
 // material
 import { Modal, Box, Menu, MenuItem, IconButton, ListItemIcon, ListItemText } from '@mui/material';
 import UpdateCompany from 'src/components/UpdateCompany';
+import Api from 'src/utils/Api';
 
 // ----------------------------------------------------------------------
 const style = {
@@ -31,7 +32,7 @@ const style = {
   p: 4
 };
 
-export default function CompanyMoreMenu() {
+export default function CompanyMoreMenu(props) {
   const ref = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
   const handleOpen = () => setEditOpen(true);
@@ -42,6 +43,12 @@ export default function CompanyMoreMenu() {
 
   const handleClickOpen = () => {
     setDeleteOpen(true);
+  };
+
+  const handleDeleteSubmit = () => {
+    Api.deleteCompany(props.companyId).then((response) => {
+      window.location.reload();
+    });
   };
 
   const handleClose = () => {
@@ -89,7 +96,7 @@ export default function CompanyMoreMenu() {
             <Button autoFocus onClick={handleClose}>
               Disagree
             </Button>
-            <Button onClick={handleClose} autoFocus>
+            <Button onClick={handleDeleteSubmit} autoFocus>
               Agree
             </Button>
           </DialogActions>
