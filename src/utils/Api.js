@@ -50,6 +50,39 @@ class Api {
       CompanyAdress: companyAdress
     });
 
+  deleteEmployee = (employeeId) =>
+    this.axiosInstance.delete('Employee/delete-employee', {
+      EmployeeId: employeeId
+    });
+
+  deleteCompany = (companyId) =>
+    this.axiosInstance.delete('Company/delete-company', {
+      CompanyId: companyId
+    });
+
+  updateEmployee = (employeeId, employeeName, employeeSurname, companyId) =>
+    this.axiosInstance.put('Employee/update-employee', {
+      EmployeeId: employeeId,
+      EmployeeName: employeeName,
+      EmployeeSurname: employeeSurname,
+      CompanyId: companyId
+    });
+
+  updateUserEmployee = (userId, username, password) =>
+    this.axiosInstance.put('User/update-user', {
+      UserId: userId,
+      UserName: username,
+      Password: password
+    });
+
+  updateCompany = (companyId, companyName, companyCity, companyAdress) =>
+    this.axiosInstance.put('Company/update-company', {
+      CompanyId: companyId,
+      CompanyName: companyName,
+      CompanyCity: companyCity,
+      CompanyAdress: companyAdress
+    });
+
   getCustomerCount = () => this.axiosInstance.get('Customer/customer-count');
 
   getEmployeeCount = () => this.axiosInstance.get('Employee/employee-count');

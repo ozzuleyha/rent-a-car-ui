@@ -244,11 +244,11 @@ export default function Company() {
                             >
                               {sentenceCase(status)}
                             </Label>
-                          </TableCell>
-
-                          <TableCell align="right">
-                            <CompanyMoreMenu />
                           </TableCell> */}
+
+                        <TableCell align="right">
+                          <CompanyMoreMenu />
+                        </TableCell>
                       </TableRow>
                     );
                   })}
