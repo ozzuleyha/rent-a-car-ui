@@ -246,7 +246,7 @@ export default function Employee() {
                         </TableCell> */}
 
                         <TableCell align="right">
-                          <EmployeeMoreMenu />
+                          <EmployeeMoreMenu employeeId={id} />
                         </TableCell>
                       </TableRow>
                     );

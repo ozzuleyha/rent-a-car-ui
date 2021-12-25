@@ -51,9 +51,7 @@ class Api {
     });
 
   deleteEmployee = (employeeId) =>
-    this.axiosInstance.delete('Employee/delete-employee', {
-      EmployeeId: employeeId
-    });
+    this.axiosInstance.delete('Employee/delete-employee', { data: { EmployeeId: employeeId } });
 
   deleteCompany = (companyId) =>
     this.axiosInstance.delete('Company/delete-company', {

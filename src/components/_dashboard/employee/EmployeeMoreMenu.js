@@ -1,6 +1,5 @@
 /* eslint-disable import/no-unresolved */
 import { Icon } from '@iconify/react';
-import * as React from 'react';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -9,7 +8,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import editFill from '@iconify/icons-eva/edit-fill';
 import { Link as RouterLink } from 'react-router-dom';
 import trash2Outline from '@iconify/icons-eva/trash-2-outline';
@@ -17,6 +16,7 @@ import moreVerticalFill from '@iconify/icons-eva/more-vertical-fill';
 // material
 import { Modal, Box, Menu, MenuItem, IconButton, ListItemIcon, ListItemText } from '@mui/material';
 import UpdateEmployee from 'src/components/UpdateEmployee';
+import Api from 'src/utils/Api';
 
 // ----------------------------------------------------------------------
 const style = {
@@ -31,12 +31,12 @@ const style = {
   p: 4
 };
 
-export default function EmployeeMoreMenu() {
+export default function EmployeeMoreMenu(props) {
   const ref = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
   const handleOpen = () => setEditOpen(true);
-  const [deleteOpen, setDeleteOpen] = React.useState(false);
-  const [editOpen, setEditOpen] = React.useState(false);
+  const [deleteOpen, setDeleteOpen] = useState(false);
+  const [editOpen, setEditOpen] = useState(false);
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
 
@@ -47,6 +47,12 @@ export default function EmployeeMoreMenu() {
   const handleClose = () => {
     setDeleteOpen(false);
     setEditOpen(false);
+  };
+
+  const handleSubmit = () => {
+    Api.deleteEmployee(props.employeeId).then((response) => {
+      window.location.reload();
+    });
   };
 
   return (
@@ -89,7 +95,7 @@ export default function EmployeeMoreMenu() {
             <Button autoFocus onClick={handleClose}>
               Disagree
             </Button>
-            <Button onClick={handleClose} autoFocus>
+            <Button onClick={handleSubmit} autoFocus>
               Agree
             </Button>
           </DialogActions>
