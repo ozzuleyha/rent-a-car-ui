@@ -1,51 +1,32 @@
 /* eslint-disable import/no-unresolved */
 import Api from 'src/utils/Api';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import eyeFill from '@iconify/icons-eva/eye-fill';
 import eyeOffFill from '@iconify/icons-eva/eye-off-fill';
 import { Icon } from '@iconify/react';
 import { TextField, IconButton, InputAdornment } from '@mui/material';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import FormControl from '@mui/material/FormControl';
-import InputLabel from '@mui/material/InputLabel';
-import Select from '@mui/material/Select';
-import MenuItem from '@mui/material/MenuItem';
 
-export default function UpdateEmployee() {
+export default function UpdateEmployee(props) {
+  console.log(props);
   const [showPassword, setShowPassword] = useState(false);
-  const [companyId, setCompanyId] = useState('');
-  const [companies, setCompanies] = useState([]);
-  const [employeeName, setEmployeeName] = useState('');
-  const [employeeSurname, setEmployeeSurname] = useState('');
-  const [username, setUsername] = useState('');
+  const [employeeName, setEmployeeName] = useState(props.employee.EmployeeName);
+  const [employeeSurname, setEmployeeSurname] = useState(props.employee.EmployeeSurname);
+  const [username, setUsername] = useState(props.user.UserName);
   const [password, setPassword] = useState('');
-
-  const loadData = () => {
-    Api.getCompanyList().then((response) => {
-      console.log(response.data);
-      setCompanies(response.data);
-    });
-  };
-  useEffect(() => {
-    console.log('hayat');
-    loadData();
-  }, []);
 
   const handleShowPassword = () => {
     setShowPassword((show) => !show);
   };
   const handleSubmit = () => {
-    Api.addUserEmployee(username, password).then((response) => {
-      console.log(response.data);
-      Api.addEmployee(employeeName, employeeSurname, companyId);
-      window.location.reload();
+    Api.updateUserEmployee(props.employee.userId, username, password).then((response) => {
+      Api.updateEmployee(props.employee.id, employeeName, employeeSurname)
+        .then((response) => window.location.reload())
+        .catch((error) => console.log(JSON.parse(error.response.request.response)));
     });
   };
 
-  const handleChange = (event) => {
-    setCompanyId(event.target.value);
-  };
   return (
     <Box
       component="form"
@@ -69,24 +50,6 @@ export default function UpdateEmployee() {
         value={employeeSurname}
         onChange={(event) => setEmployeeSurname(event.target.value)}
       />
-      {/* <TextField id="outlined-basic" label="Company Name" variant="outlined" /> */}
-      <Box sx={{ minWidth: 120 }}>
-        <FormControl fullWidth>
-          <InputLabel id="demo-simple-select-label">Company Name</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            label="Company Name"
-            onChange={handleChange}
-          >
-            {companies.map((company, index) => (
-              <MenuItem value={company.id} key={index}>
-                {company.CompanyName}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-      </Box>
       <TextField
         id="outlined-basic"
         label="Username"

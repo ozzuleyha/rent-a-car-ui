@@ -8,15 +8,16 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState } from 'react';
 import editFill from '@iconify/icons-eva/edit-fill';
 import { Link as RouterLink } from 'react-router-dom';
 import trash2Outline from '@iconify/icons-eva/trash-2-outline';
 import moreVerticalFill from '@iconify/icons-eva/more-vertical-fill';
 // material
 import { Modal, Box, Menu, MenuItem, IconButton, ListItemIcon, ListItemText } from '@mui/material';
-import UpdateEmployee from 'src/components/UpdateEmployee';
+
 import Api from 'src/utils/Api';
+import UpdateEmployee from 'src/layouts/UpdateEmployee';
 
 // ----------------------------------------------------------------------
 const style = {
@@ -32,6 +33,7 @@ const style = {
 };
 
 export default function EmployeeMoreMenu(props) {
+  console.log(props);
   const ref = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
   const handleOpen = () => setEditOpen(true);
@@ -111,17 +113,20 @@ export default function EmployeeMoreMenu(props) {
             onClick={handleOpen}
           />
         </MenuItem>
-        <Modal
-          open={editOpen}
-          onClose={handleClose}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-        >
-          <Box sx={style}>
-            <UpdateEmployee />
-          </Box>
-        </Modal>
       </Menu>
+      <Modal
+        open={editOpen}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <UpdateEmployee
+            user={props.users.find((user) => user.id === props.userId)}
+            employee={props.employees.find((employee) => employee.id === props.employeeId)}
+          />
+        </Box>
+      </Modal>
     </>
   );
 }

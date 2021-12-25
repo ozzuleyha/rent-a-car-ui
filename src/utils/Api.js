@@ -56,12 +56,11 @@ class Api {
   deleteCompany = (companyId) =>
     this.axiosInstance.delete('Company/delete-company', { data: { CompanyId: companyId } });
 
-  updateEmployee = (employeeId, employeeName, employeeSurname, companyId) =>
+  updateEmployee = (employeeId, employeeName, employeeSurname) =>
     this.axiosInstance.put('Employee/update-employee', {
       EmployeeId: employeeId,
       EmployeeName: employeeName,
-      EmployeeSurname: employeeSurname,
-      CompanyId: companyId
+      EmployeeSurname: employeeSurname
     });
 
   updateUserEmployee = (userId, username, password) =>
@@ -87,13 +86,15 @@ class Api {
 
   getCarCount = () => this.axiosInstance.get('Car/car-count');
 
+  getUserList = () => this.axiosInstance.get('User/user-list');
+
   getCustomerList = () => this.axiosInstance.get('Customer/customer-list');
 
   getEmployeeList = () => this.axiosInstance.get('Employee/employee-list');
 
   getCompanyList = () => this.axiosInstance.get('Company/company-list');
 
-  getCarList = () => this.axiosInstance.get('Car/Car-list');
+  getCarList = () => this.axiosInstance.get('Car/car-list');
 }
 
 export default new Api();

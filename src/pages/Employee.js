@@ -101,11 +101,15 @@ export default function Employee() {
   const [filterName, setFilterName] = useState('');
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [employees, setEmployees] = useState([]);
+  const [users, setUsers] = useState([]);
 
   const loadData = () => {
     Api.getEmployeeList().then((response) => {
       console.log(response.data);
       setEmployees(response.data);
+    });
+    Api.getUserList().then((response) => {
+      setUsers(response.data);
     });
   };
   useEffect(() => {
@@ -214,7 +218,7 @@ export default function Employee() {
                 />
                 <TableBody>
                   {employees.map((row) => {
-                    const { id, EmployeeName, EmployeeSurname, CompanyId } = row;
+                    const { id, EmployeeName, EmployeeSurname, CompanyId, UserId } = row;
                     const isItemSelected = selected.indexOf(EmployeeName) !== -1;
 
                     return (
@@ -246,7 +250,12 @@ export default function Employee() {
                         </TableCell> */}
 
                         <TableCell align="right">
-                          <EmployeeMoreMenu employeeId={id} />
+                          <EmployeeMoreMenu
+                            users={users}
+                            employees={employees}
+                            employeeId={id}
+                            userId={UserId}
+                          />
                         </TableCell>
                       </TableRow>
                     );
