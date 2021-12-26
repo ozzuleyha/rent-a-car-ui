@@ -112,18 +112,20 @@ export default function CompanyMoreMenu(props) {
             onClick={handleOpen}
           />
         </MenuItem>
-
-        <Modal
-          open={editOpen}
-          onClose={handleClose}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-        >
-          <Box sx={style}>
-            <UpdateCompany />
-          </Box>
-        </Modal>
       </Menu>
+
+      <Modal
+        open={editOpen}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <UpdateCompany
+            company={props.companies.find((company) => company.id === props.companyId)}
+          />
+        </Box>
+      </Modal>
     </>
   );
 }

@@ -5,15 +5,18 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 
-export default function UpdateCompany() {
-  const [companyName, setCompanyName] = useState('');
-  const [companyCity, setCompanyCity] = useState('');
-  const [companyAdress, setCompanyAdress] = useState('');
+export default function UpdateCompany(props) {
+  const [companyName, setCompanyName] = useState(props.company.CompanyName);
+  const [companyCity, setCompanyCity] = useState(props.company.CompanyCity);
+  const [companyAdress, setCompanyAdress] = useState(props.company.CompanyAdress);
 
   const handleSubmit = () => {
-    Api.addCompany(companyName, companyCity, companyAdress).then((response) => {
-      window.location.reload();
-    });
+    console.log(props.company.id, companyName, companyCity, companyAdress);
+    Api.updateCompany(props.company.id, companyName, companyCity, companyAdress).then(
+      (response) => {
+        window.location.reload();
+      }
+    );
   };
 
   return (
