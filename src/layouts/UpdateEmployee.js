@@ -19,7 +19,7 @@ export default function UpdateEmployee(props) {
     setShowPassword((show) => !show);
   };
   const handleSubmit = () => {
-    Api.updateUserEmployee(props.employee.userId, username, password).then(() => {
+    Api.updateUserEmployee(props.employee.id, username, password).then(() => {
       Api.updateEmployee(props.employee.id, employeeName, employeeSurname).then(() =>
         window.location.reload()
       );

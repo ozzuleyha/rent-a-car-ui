@@ -49,9 +49,14 @@ export default function Cars() {
             onClick={handleOpen}
             variant="contained"
             component={RouterLink}
+            style={
+              JSON.parse(localStorage.getItem('userInformations')).UserRoleId === 2
+                ? { display: 'block' }
+                : { display: 'none' }
+            }
             to="#"
-            startIcon={<Icon icon={plusFill} />}
           >
+            <Icon icon={plusFill} style={{ fontSize: 22, paddingTop: 7 }} />
             New Car
           </Button>
           <Modal

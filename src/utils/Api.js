@@ -50,6 +50,17 @@ class Api {
       CompanyAdress: companyAdress
     });
 
+  addCar = (carName, carModel, rentPrice, requiredLicenseAge, seatingCapacity, airbag, companyId) =>
+    this.axiosInstance.post('Car/add-car', {
+      CarName: carName,
+      CarModel: carModel,
+      RentPrice: rentPrice,
+      RequiredLicenseAge: requiredLicenseAge,
+      SeatingCapacity: seatingCapacity,
+      Airbag: airbag,
+      CompanyId: companyId
+    });
+
   deleteEmployee = (employeeId) =>
     this.axiosInstance.delete('Employee/delete-employee', { data: { EmployeeId: employeeId } });
 
