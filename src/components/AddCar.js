@@ -1,8 +1,11 @@
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable prefer-template */
 /* eslint-disable import/no-unresolved */
 import { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import Avatar from '@mui/material/Avatar';
 import Input from '@mui/material/Input';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -17,6 +20,7 @@ export default function AddCompany() {
   const [rentPrice, setRentPrice] = useState('');
   const [requiredLicenseAge, setRequiredLicenseAge] = useState('');
   const [seatingCapacity, setSeatingCapacity] = useState('');
+  const [imageName, setImageName] = useState('anonymous.jpg');
   // const [companyId, setCompanyId] = React.useState('');
 
   const companyId = JSON.parse(localStorage.getItem('userInformations')).CompanyId;
@@ -35,6 +39,23 @@ export default function AddCompany() {
     });
   };
 
+  const handleFileSelected = (event) => {
+    console.log(event);
+    const formData = new FormData();
+    formData.append('PhotoFile', event.target.files[0]);
+    for (const [key, value] of formData.entries()) {
+      console.log(key, value);
+    }
+    // formData.append('myFile', event.target.files[0]);
+    console.log(formData);
+    Api.saveFile(formData)
+      .then((response) => {
+        console.log(response);
+        setImageName(event.target.files[0].name);
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <Box
       component="form"
@@ -44,7 +65,12 @@ export default function AddCompany() {
       noValidate
       autoComplete="off"
     >
-      <Input accept="image/*" id="icon-button-file" type="file" />
+      <Avatar
+        alt="Remy Sharp"
+        style={{ width: 200, height: 200 }}
+        src={'http://localhost:38175/Photos/' + imageName}
+      />
+      <Input onChange={handleFileSelected} id="icon-button-file" type="file" />
       <TextField
         id="outlined-basic"
         label="Car Name"

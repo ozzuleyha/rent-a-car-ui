@@ -1,13 +1,14 @@
+/* eslint-disable import/no-unresolved */
+/* eslint-disable import/extensions */
 import PropTypes from 'prop-types';
 import { Link as RouterLink } from 'react-router-dom';
+import * as React from 'react';
 // material
 import { Box, Card, Link, Typography, Stack } from '@mui/material';
 import { styled } from '@mui/material/styles';
-// utils
-import { fCurrency } from '../../../utils/formatNumber';
-//
-import Label from '../../Label';
-import ColorPreview from '../../ColorPreview';
+import Button from '@mui/material/Button';
+import Modal from '@mui/material/Modal';
+import CarInformation from 'src/components/CarInformation';
 
 // ----------------------------------------------------------------------
 
@@ -18,6 +19,17 @@ const ProductImgStyle = styled('img')({
   objectFit: 'cover',
   position: 'absolute'
 });
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4
+};
 
 // ----------------------------------------------------------------------
 
@@ -26,12 +38,15 @@ RentCarCard.propTypes = {
 };
 
 export default function RentCarCard({ car }) {
-  const { name, cover, price, colors, status, priceSale } = car;
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const { cover, CarModel, CarName, RentPrice, id, SeatCapacity, Airbag } = car;
 
   return (
     <Card>
       <Box sx={{ pt: '100%', position: 'relative' }}>
-        {status && (
+        {/* {status && (
           <Label
             variant="filled"
             color={(status === 'sale' && 'error') || 'info'}
@@ -45,21 +60,43 @@ export default function RentCarCard({ car }) {
           >
             {status}
           </Label>
-        )}
-        <ProductImgStyle alt={name} src={cover} />
+        )} */}
+        <ProductImgStyle alt={CarName} src="http://localhost:38175/Photos/car_2.jpg" />
       </Box>
 
       <Stack spacing={2} sx={{ p: 3 }}>
-        <Link to="#" color="inherit" underline="hover" component={RouterLink}>
+        <Link
+          to="#"
+          color="inherit"
+          underline="hover"
+          component={RouterLink}
+          onClick={handleOpen}
+          key={id}
+        >
           <Typography variant="subtitle2" noWrap>
-            {name}
+            {CarModel} Model
+          </Typography>
+          <Typography variant="subtitle2" noWrap>
+            {CarName}
           </Typography>
         </Link>
+        <div>
+          <Modal
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <Box sx={style}>
+              <CarInformation carId={id} cars={car}/>
+            </Box>
+          </Modal>
+        </div>
 
         <Stack direction="row" alignItems="center" justifyContent="space-between">
-          <ColorPreview colors={colors} />
+          {/* <ColorPreview colors={colors} /> */}
           <Typography variant="subtitle1">
-            <Typography
+            {/* <Typography
               component="span"
               variant="body1"
               sx={{
@@ -67,10 +104,10 @@ export default function RentCarCard({ car }) {
                 textDecoration: 'line-through'
               }}
             >
-              {priceSale && fCurrency(priceSale)}
+              {RentPrice}
             </Typography>
-            &nbsp;
-            {fCurrency(price)}
+            &nbsp; */}
+            {RentPrice}
           </Typography>
         </Stack>
       </Stack>

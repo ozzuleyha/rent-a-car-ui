@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 // material
 import { Grid } from '@mui/material';
 import RentCarCard from './CarCard';
-
 // ----------------------------------------------------------------------
 
 CarList.propTypes = {
@@ -10,6 +9,7 @@ CarList.propTypes = {
 };
 
 export default function CarList({ cars, ...other }) {
+  console.log('Carlistteki cars', cars);
   return (
     <Grid container spacing={3} {...other}>
       {cars.map((car) => (

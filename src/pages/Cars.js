@@ -1,6 +1,8 @@
+/* eslint-disable import/order */
+/* eslint-disable import/no-unresolved */
 // material
 
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Icon } from '@iconify/react';
 import { Container, Stack, Box, Modal, Typography, Button } from '@mui/material';
 
@@ -12,6 +14,7 @@ import { CarList } from '../components/_dashboard/cars';
 import AddCar from '../components/AddCar';
 //
 import PRODUCTS from '../_mocks_/products';
+import Api from 'src/utils/Api';
 
 const style = {
   position: 'absolute',
@@ -28,9 +31,22 @@ const style = {
 // ----------------------------------------------------------------------
 
 export default function Cars() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const [cars, setCars] = useState([]);
+
+  const loadData = () => {
+    Api.getCarList().then((response) => {
+      console.log(response.data);
+      setCars(response.data);
+    });
+  };
+  useEffect(() => {
+    console.log('hayat');
+    loadData();
+  }, []);
   return (
     <Page title="Dashboard: Products | Minimal-UI">
       <Container>
@@ -71,7 +87,7 @@ export default function Cars() {
           </Modal>
         </Stack>
 
-        <CarList cars={PRODUCTS} />
+        <CarList cars={cars} />
       </Container>
     </Page>
   );
