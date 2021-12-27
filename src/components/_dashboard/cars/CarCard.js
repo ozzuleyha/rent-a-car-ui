@@ -88,7 +88,7 @@ export default function RentCarCard({ car }) {
             aria-describedby="modal-modal-description"
           >
             <Box sx={style}>
-              <CarInformation carId={id} cars={car}/>
+              <CarInformation carId={id} cars={car} />
             </Box>
           </Modal>
         </div>
