@@ -3,12 +3,13 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+import { Stack } from '@mui/material';
 
 export default function CarInformation(props) {
   console.log(props.carId);
   console.log('propslar burada', props.car);
   return (
-    <div>
+    <Stack>
       <Typography id="modal-modal-title" variant="h6" component="h2">
         {props.car.CarName}
       </Typography>
@@ -27,6 +28,10 @@ export default function CarInformation(props) {
       <Typography id="modal-modal-description" sx={{ mt: 2 }}>
         Required License Age: {props.car.RequiredLicenseAge}
       </Typography>
-    </div>
+
+      <Button style={{ marginTop: 20 }} variant="contained">
+        Rent This Car
+      </Button>
+    </Stack>
   );
 }
