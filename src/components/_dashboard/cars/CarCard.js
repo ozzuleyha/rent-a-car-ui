@@ -78,7 +78,7 @@ export default function RentCarCard({ car, cars }) {
           </Typography>
         </Link>
 
-        <CarMoreMenu carId={id} />
+        <CarMoreMenu carId={id} cars={cars} car={cars.find((car) => car.id === id)} />
 
         <Stack direction="row" alignItems="center" justifyContent="space-between">
           {/* <ColorPreview colors={colors} /> */}

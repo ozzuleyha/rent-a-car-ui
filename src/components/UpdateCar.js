@@ -13,20 +13,20 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Api from 'src/utils/Api';
 
-export default function AddCompany() {
+export default function AddCompany(props) {
   const [airbag, setAirbag] = useState('');
-  const [carName, setCarName] = useState('');
-  const [carModel, setCarModel] = useState('');
-  const [rentPrice, setRentPrice] = useState('');
-  const [requiredLicenseAge, setRequiredLicenseAge] = useState('');
-  const [seatingCapacity, setSeatingCapacity] = useState('');
+  const [carName, setCarName] = useState(props.car.CarName);
+  const [carModel, setCarModel] = useState(props.car.CarModel);
+  const [rentPrice, setRentPrice] = useState(props.car.RentPrice);
+  const [requiredLicenseAge, setRequiredLicenseAge] = useState(props.car.RequiredLicenseAge);
+  const [seatingCapacity, setSeatingCapacity] = useState(props.car.SeatingCapacity);
   const [imageName, setImageName] = useState('anonymous.jpg');
   // const [companyId, setCompanyId] = React.useState('');
 
   const companyId = JSON.parse(localStorage.getItem('userInformations')).CompanyId;
-
   const handleSubmit = () => {
-    Api.addCar(
+    Api.updateCar(
+      props.carId,
       carName,
       carModel,
       rentPrice,
@@ -39,22 +39,22 @@ export default function AddCompany() {
     });
   };
 
-  const handleFileSelected = (event) => {
-    console.log(event);
-    const formData = new FormData();
-    formData.append('PhotoFile', event.target.files[0]);
-    for (const [key, value] of formData.entries()) {
-      console.log(key, value);
-    }
-    // formData.append('myFile', event.target.files[0]);
-    console.log(formData);
-    Api.saveFile(formData)
-      .then((response) => {
-        console.log(response);
-        setImageName(event.target.files[0].name);
-      })
-      .catch((err) => console.log(err));
-  };
+  //   const handleFileSelected = (event) => {
+  //     console.log(event);
+  //     const formData = new FormData();
+  //     formData.append('PhotoFile', event.target.files[0]);
+  //     for (const [key, value] of formData.entries()) {
+  //       console.log(key, value);
+  //     }
+  //     // formData.append('myFile', event.target.files[0]);
+  //     console.log(formData);
+  //     Api.saveFile(formData)
+  //       .then((response) => {
+  //         console.log(response);
+  //         setImageName(event.target.files[0].name);
+  //       })
+  //       .catch((err) => console.log(err));
+  //   };
 
   return (
     <Box
@@ -65,12 +65,12 @@ export default function AddCompany() {
       noValidate
       autoComplete="off"
     >
-      <Avatar
+      {/* <Avatar
         alt="Remy Sharp"
         style={{ width: 200, height: 200 }}
         src={'http://localhost:38175/Photos/' + imageName}
       />
-      <Input onChange={handleFileSelected} id="icon-button-file" type="file" />
+      <Input onChange={handleFileSelected} id="icon-button-file" type="file" /> */}
       <TextField
         id="outlined-basic"
         label="Car Name"

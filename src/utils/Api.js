@@ -91,6 +91,27 @@ class Api {
       CompanyAdress: companyAdress
     });
 
+  updateCar = (
+    carId,
+    carName,
+    carModel,
+    rentPrice,
+    requiredLicenseAge,
+    seatingCapacity,
+    airbag,
+    companyId
+  ) =>
+    this.axiosInstance.put('Car/update-car', {
+      CarId: carId,
+      CarName: carName,
+      CarModel: carModel,
+      RentPrice: rentPrice,
+      RequiredLicenseAge: requiredLicenseAge,
+      SeatingCapacity: seatingCapacity,
+      Airbag: airbag,
+      CompanyId: companyId
+    });
+
   saveFile = (uploadedFile) =>
     this.axiosInstance.post(
       'Car/SaveFile',
