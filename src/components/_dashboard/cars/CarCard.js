@@ -9,6 +9,7 @@ import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import CarInformation from 'src/components/CarInformation';
+import CarMoreMenu from './CarMoreMenu';
 
 // ----------------------------------------------------------------------
 
@@ -33,11 +34,7 @@ const style = {
 
 // ----------------------------------------------------------------------
 
-RentCarCard.propTypes = {
-  car: PropTypes.object
-};
-
-export default function RentCarCard({ car }) {
+export default function RentCarCard({ car, cars }) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -80,18 +77,8 @@ export default function RentCarCard({ car }) {
             {CarName}
           </Typography>
         </Link>
-        <div>
-          <Modal
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
-          >
-            <Box sx={style}>
-              <CarInformation carId={id} cars={car} />
-            </Box>
-          </Modal>
-        </div>
+
+        <CarMoreMenu carId={id} />
 
         <Stack direction="row" alignItems="center" justifyContent="space-between">
           {/* <ColorPreview colors={colors} /> */}
@@ -107,10 +94,22 @@ export default function RentCarCard({ car }) {
               {RentPrice}
             </Typography>
             &nbsp; */}
-            {RentPrice}
+            ${RentPrice}
           </Typography>
         </Stack>
       </Stack>
+      <div>
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+            <CarInformation carId={id} cars={cars} car={cars.find((car) => car.id === id)} />
+          </Box>
+        </Modal>
+      </div>
     </Card>
   );
 }

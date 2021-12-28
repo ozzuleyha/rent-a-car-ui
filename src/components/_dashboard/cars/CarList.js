@@ -14,7 +14,7 @@ export default function CarList({ cars, ...other }) {
     <Grid container spacing={3} {...other}>
       {cars.map((car) => (
         <Grid key={car.id} item xs={12} sm={6} md={3}>
-          <RentCarCard car={car} />
+          <RentCarCard car={car} cars={cars} />
         </Grid>
       ))}
     </Grid>
