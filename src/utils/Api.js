@@ -61,6 +61,23 @@ class Api {
       CompanyId: companyId
     });
 
+  addRentInformation = (
+    situationId,
+    carStartKm,
+    carFinalKm,
+    rentPrice,
+    rentCustomerId,
+    rentCarId
+  ) =>
+    this.axiosInstance.post('RentInformation/add-rent-information', {
+      SituationId: situationId,
+      CarStartKm: carStartKm,
+      CarFinalKm: carFinalKm,
+      RentPrice: rentPrice,
+      RentCustomerId: rentCustomerId,
+      RentCarId: rentCarId
+    });
+
   deleteEmployee = (employeeId) =>
     this.axiosInstance.delete('Employee/delete-employee', { data: { EmployeeId: employeeId } });
 
@@ -143,7 +160,7 @@ class Api {
 
   getCompanyList = () => this.axiosInstance.get('Company/company-list');
 
-  getCarList = (companyId) => this.axiosInstance.post('Car/car-list', { CompanyId: companyId });
+  getCarList = () => this.axiosInstance.get('Car/car-list');
 }
 
 export default new Api();

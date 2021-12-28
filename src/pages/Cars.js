@@ -40,7 +40,7 @@ export default function Cars() {
   const companyId = JSON.parse(localStorage.getItem('userInformations')).CompanyId;
 
   const loadData = () => {
-    Api.getCarList(companyId).then((response) => {
+    Api.getCarList().then((response) => {
       console.log('Carlist', response.data);
       setCars(response.data);
     });
