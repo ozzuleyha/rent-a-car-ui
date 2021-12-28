@@ -13,20 +13,13 @@ export default function CarInformation(props) {
 
   const rentCustomerId = JSON.parse(localStorage.getItem('userInformations')).id;
   const situationId = 1;
-  const carStartKm = 2000;
-  const carFinalKm = 3000;
 
   const handleSubmit = () => {
-    Api.addRentInformation(
-      situationId,
-      carStartKm,
-      carFinalKm,
-      props.car.RentPrice,
-      rentCustomerId,
-      props.car.id
-    ).then((response) => {
-      window.location.reload();
-    });
+    Api.addRentInformation(situationId, props.car.RentPrice, rentCustomerId, props.car.id).then(
+      (response) => {
+        window.location.reload();
+      }
+    );
   };
   return (
     <Stack>

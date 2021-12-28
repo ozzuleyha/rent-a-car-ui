@@ -61,18 +61,9 @@ class Api {
       CompanyId: companyId
     });
 
-  addRentInformation = (
-    situationId,
-    carStartKm,
-    carFinalKm,
-    rentPrice,
-    rentCustomerId,
-    rentCarId
-  ) =>
+  addRentInformation = (situationId, rentPrice, rentCustomerId, rentCarId) =>
     this.axiosInstance.post('RentInformation/add-rent-information', {
       SituationId: situationId,
-      CarStartKm: carStartKm,
-      CarFinalKm: carFinalKm,
       RentPrice: rentPrice,
       RentCustomerId: rentCustomerId,
       RentCarId: rentCarId
