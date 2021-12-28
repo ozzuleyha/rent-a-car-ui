@@ -37,14 +37,16 @@ export default function Cars() {
 
   const [cars, setCars] = useState([]);
 
+  const companyId = JSON.parse(localStorage.getItem('userInformations')).CompanyId;
+
   const loadData = () => {
-    Api.getCarList().then((response) => {
-      console.log(response.data);
+    Api.getCarList(companyId).then((response) => {
+      console.log('Carlist', response.data);
       setCars(response.data);
     });
   };
   useEffect(() => {
-    console.log('hayat');
+    console.log(companyId);
     loadData();
   }, []);
   return (

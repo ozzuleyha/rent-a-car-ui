@@ -143,7 +143,7 @@ class Api {
 
   getCompanyList = () => this.axiosInstance.get('Company/company-list');
 
-  getCarList = () => this.axiosInstance.get('Car/car-list');
+  getCarList = (companyId) => this.axiosInstance.post('Car/car-list', { CompanyId: companyId });
 }
 
 export default new Api();
