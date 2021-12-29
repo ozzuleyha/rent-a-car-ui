@@ -8,6 +8,7 @@ import Register from './pages/Register';
 import DashboardApp from './pages/DashboardApp';
 import Cars from './pages/Cars';
 import User from './pages/User';
+import RentRequests from './pages/RentRequests';
 import Employee from './pages/Employee';
 import Company from './pages/Company';
 import NotFound from './pages/Page404';
@@ -32,7 +33,7 @@ export default function Router() {
       element: <DashboardLayout />,
       children: [
         { element: <Navigate to="/dashboard/employee/rent-requests" replace /> },
-        { path: 'rent-requests', element: <User /> },
+        { path: 'rent-requests', element: <RentRequests /> },
         { path: 'cars', element: <Cars /> }
       ]
     },

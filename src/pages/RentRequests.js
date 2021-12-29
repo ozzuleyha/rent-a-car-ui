@@ -33,7 +33,7 @@ const TABLE_HEAD = [
   { id: 'id', label: 'ID', alignRight: false },
   { id: 'name', label: 'Name', alignRight: false },
   { id: 'surname', label: 'Surname', alignRight: false },
-  { id: 'customerAge', label: 'Customer Age', alignRight: false }
+  { id: 'carName', label: 'Car Name', alignRight: false }
 ];
 
 // ----------------------------------------------------------------------
@@ -67,7 +67,7 @@ function applySortFilter(array, comparator, query) {
   return stabilizedThis.map((el) => el[0]);
 }
 
-export default function User() {
+export default function RentRequests() {
   const [page, setPage] = useState(0);
   const [order, setOrder] = useState('asc');
   const [selected, setSelected] = useState([]);
@@ -77,7 +77,7 @@ export default function User() {
   const [customers, setCustomers] = useState([]);
 
   const loadData = () => {
-    Api.getCustomerList().then((response) => {
+    Api.getRentRequest().then((response) => {
       console.log(response.data);
       setCustomers(response.data);
     });
@@ -169,7 +169,7 @@ export default function User() {
                 />
                 <TableBody>
                   {customers.map((row) => {
-                    const { id, CustomerName, CustomerSurname, CustomerAge } = row;
+                    const { id, CustomerName, CustomerSurname, CarName } = row;
                     const isItemSelected = selected.indexOf(CustomerName) !== -1;
 
                     return (
@@ -191,7 +191,15 @@ export default function User() {
                         <TableCell align="left">{id}</TableCell>
                         <TableCell align="left">{CustomerName}</TableCell>
                         <TableCell align="left">{CustomerSurname}</TableCell>
-                        <TableCell align="left">{CustomerAge}</TableCell>
+                        <TableCell align="left">{CarName}</TableCell>
+
+                        <TableCell align="left">
+                          <Button variant="contained">Kabul Et</Button>
+                        </TableCell>
+
+                        <TableCell>
+                          <Button variant="outlined">Reddet</Button>
+                        </TableCell>
                       </TableRow>
                     );
                   })}

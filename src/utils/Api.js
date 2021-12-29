@@ -152,6 +152,8 @@ class Api {
   getCompanyList = () => this.axiosInstance.get('Company/company-list');
 
   getCarList = () => this.axiosInstance.get('Car/car-list');
+
+  getRentRequest = () => this.axiosInstance.get('RentInformation/rent-request-list');
 }
 
 export default new Api();
