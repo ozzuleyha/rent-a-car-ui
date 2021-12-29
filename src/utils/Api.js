@@ -99,6 +99,12 @@ class Api {
       CompanyAdress: companyAdress
     });
 
+  updateRentInformation = (rentInformationId, situationId) =>
+    this.axiosInstance.put('RentInformation/update-rent-information', {
+      RentId: rentInformationId,
+      SituationId: situationId
+    });
+
   updateCar = (
     carId,
     carName,

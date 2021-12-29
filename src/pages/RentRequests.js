@@ -102,6 +102,22 @@ export default function RentRequests() {
     setSelected([]);
   };
 
+  const handleSubmitKabulEt = (id) => {
+    const situationId = 2;
+    const customer = customers.find((customer) => customer.id === id);
+    Api.updateRentInformation(customer.rentInformationId, situationId).then((response) => {
+      window.location.reload();
+    });
+  };
+
+  const handleSubmitReddet = (id) => {
+    const situationId = 4;
+    const customer = customers.find((customer) => customer.id === id);
+    Api.updateRentInformation(customer.rentInformationId, situationId).then((response) => {
+      window.location.reload();
+    });
+  };
+
   const handleClick = (event, name) => {
     const selectedIndex = selected.indexOf(name);
     let newSelected = [];
@@ -194,11 +210,15 @@ export default function RentRequests() {
                         <TableCell align="left">{CarName}</TableCell>
 
                         <TableCell align="left">
-                          <Button variant="contained">Kabul Et</Button>
+                          <Button onClick={() => handleSubmitKabulEt(id)} variant="contained">
+                            Kabul Et
+                          </Button>
                         </TableCell>
 
                         <TableCell>
-                          <Button variant="outlined">Reddet</Button>
+                          <Button onClick={() => handleSubmitReddet(id)} variant="outlined">
+                            Reddet
+                          </Button>
                         </TableCell>
                       </TableRow>
                     );
