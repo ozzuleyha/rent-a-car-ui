@@ -69,6 +69,11 @@ class Api {
       RentCarId: rentCarId
     });
 
+  GetRentResult = (customerId) =>
+    this.axiosInstance.post('RentInformation/rent-result-list', {
+      CustomerId: customerId
+    });
+
   deleteEmployee = (employeeId) =>
     this.axiosInstance.delete('Employee/delete-employee', { data: { EmployeeId: employeeId } });
 
@@ -102,6 +107,12 @@ class Api {
   updateRentInformation = (rentInformationId, situationId) =>
     this.axiosInstance.put('RentInformation/update-rent-information', {
       RentId: rentInformationId,
+      SituationId: situationId
+    });
+
+  updateCarSituation = (carId, situationId) =>
+    this.axiosInstance.put('Car/update-car-situation', {
+      CarId: carId,
       SituationId: situationId
     });
 

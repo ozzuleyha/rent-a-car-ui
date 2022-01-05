@@ -11,6 +11,7 @@ import User from './pages/User';
 import RentRequests from './pages/RentRequests';
 import Employee from './pages/Employee';
 import Company from './pages/Company';
+import RentResult from './pages/RentResult';
 import NotFound from './pages/Page404';
 
 // ----------------------------------------------------------------------
@@ -42,7 +43,8 @@ export default function Router() {
       element: <DashboardLayout />,
       children: [
         { element: <Navigate to="/dashboard/user/cars" replace /> },
-        { path: 'cars', element: <Cars /> }
+        { path: 'cars', element: <Cars /> },
+        { path: 'rent-result', element: <RentResult /> }
       ]
     },
     {

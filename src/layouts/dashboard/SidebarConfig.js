@@ -54,6 +54,12 @@ const sidebarConfig = [
     userRole: 1
   },
   {
+    title: 'Rent Result',
+    path: '/dashboard/user/rent-result',
+    icon: getIcon(peopleFill),
+    userRole: 1
+  },
+  {
     title: 'login',
     path: '/login',
     icon: getIcon(lockFill)
