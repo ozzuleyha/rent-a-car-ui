@@ -1,40 +1,54 @@
-## Minimal [(Free version)](https://minimal-kit-react.vercel.app/)
 
-![license](https://img.shields.io/badge/license-MIT-blue.svg)
+# Rent a Car Project
 
-> Free React Admin Dashboard made with Material-UI components and React.
+Araba kiralama ofisleri ve müşterileri arasındaki işlemleri bu proje içerisinde yapabilmek mümkün. Müşteriler kiralama talebinde bulunabiliyor, çalışanlar talepleri değerlendirebiliyor ve müşteriler kiralama taleplerinin sonuçlarını görebiliyor
 
-![preview](public/static/preview.png)
+# Getting Started
 
-| [Minimal Free](https://minimal-kit-react.vercel.app/) | [Minimal](https://material-ui.com/store/items/minimal-dashboard/) |
-| ----------------------------------------------------- | :---------------------------------------------------------------- |
-| **7** Demo pages                                      | **42+** demo pages                                                |
-| -                                                     | ✓ Multi-language                                                  |
-| -                                                     | ✓ Dark/Light Mode 🌓                                              |
-| -                                                     | ✓ [More components](https://minimals.cc/components)               |
-| -                                                     | ✓ TypeScript version                                              |
-| -                                                     | ✓ Design files (Figma & Sketch)                                   |
+- Recommended ```node js 14+``` and ```npm 6+``` 
+- Install dependecies: ```npm install``` or ```yarn install``` 
+- Start the server: ```npm start``` or ```yarn start``` 
 
-## Page demo
+# Routes'lar nasıl çalışıyor?
 
-- [Dashboard](https://minimal-kit-react.vercel.app/dashboard/app)
-- [Users](https://minimal-kit-react.vercel.app/dashboard/user)
-- [Product](https://minimal-kit-react.vercel.app/dashboard/products)
-- [Blog](https://minimal-kit-react.vercel.app/dashboard/blog)
-- [Login](https://minimal-kit-react.vercel.app/login)
-- [Register](https://minimal-kit-react.vercel.app/register)
-- [Not Found](https://minimal-kit-react.vercel.app/404)
+src dosyamızın içerisinde bulunan routes.js dosyamız bizim projemizde geçişlerimizi sağlayan önemli bir yapı.
+useRoutes() kullanarak pathleri ve hangi yolda ilerleyeceğini sisteme verdik. Navbarlarda ekstra bir ekleme olacağı zaman bu kısımdan eklememiz gerek.
 
-## Getting started
+# Api.js dosyası ne işe yarar?
+ 
+src dosyamızınaltındaki utils dosyasında bulunan api.js bizim api ile bağlantımızı axios yardımıyla sağlar.
+Tüm fonksiyonlarımızı önce api.js te tanımlayıp hem daha okunaklı ve temiz bir kod oluşturup daha sonra ui içerisinde kullanabiliriz. 
 
-- Recommended `node js 14+` and `npm 6+`
-- Install dependencies: `npm install` or `yarn install`
-- Start the server: `npm run start` or `yarn start`
+Nasıl ekleme yapabiliriz?
+-
+- Şöyle ki ui tarafında kullanacağımız fonksiyon ismini seçmekte apiden bağımsızız. Parametreleremizi api parametreleri ile eşleştirip apidaki controllerda kurmuş oluğumuz yolu vererek fonksiyon eklemesi yapabiliriz
 
-## License
 
-Distributed under the MIT License. See [LICENSE](https://github.com/minimal-ui-kit/minimal.free/blob/main/LICENSE.md) for more information.
+# Paneller ve özellikleri
 
-## Contact us
+Projemde 
+- Admin Panel
+- Employee Panel
+- Customer Panel
+olmak üzere 3 ayrı panel kullanmayı seçtim. Tüm kullanıcıların aynı login ekranından giriş yapabilmesi için her birine bir user role atadım.
+Bu user rollere göre istemci tarafında belirli kontroller yapılıyor. Local storage ile giriş yapan kullanıcının bilgilerini kullanmak üzere tuttum.
 
-Email Us: support@minimals.cc
+Register page ise sadece müşteriye özel oldu çünkü şirket çalışanlarını adminin eklemesini istedim. 
+
+Admin panel ve görevleri
+-
+- Admin panelde sistemin tamamı yönetiliyor ve sistemin istatistikleri görülebiliyor.
+- Dashboard ekranında toplam kaç user bulunduğu, kaç şirket barındırdığı, bu şirketlerin kaç çalışanı ve kaç araç bulundurduğu nu görülebiliyor.
+- Users ekranında ise sisteme kayıtlı müşterilerin listesi görülmektedir.
+- Companies ekranında sistemde bulunan şirketlerin listesi bulunmaktadır. Ayrıca bu ekranda yeni bir şirket ekleyebiliyoruz veya var olan bir şirketin bilgilerini güncelleyip silebiliyoruz.
+- Employees ekranında tüm şirketlerin çalışanları görülüyor. Burada herhangi bir şirkete mensup yeni bir çalışan ekleyebiliyoruz veya var olan bir çalışanın bilgilerini güncelleyip silebiliyoruz.
+
+Employee panel ve görevleri
+-
+- Cars ekranında bulunduğumuz şirkete ait tüm araçları görebiliyoruz. Bu araçların üzerinde güncellemeler yapabiliyoruz ve yeni bir araç ekleyebiliyoruz.
+- Rent requests ekranında ise bizim şirketimize ait olan araçlara gelen kiralama taleplerini görüyoruz. Talepler kabul edebiliyoruz veya reddedebiliyoruz.
+
+Customer panel ve görevleri
+-
+- Cars ekranında tüm şirketlere ait araçların listesini görebiliyoruz. Aracın üzerine tıkladığımızda aracın bilgilerini detaylı olarak inceleyebiliyoruz ve kiralama talebinde bulunabiliyoruz.
+- Rent result ekranında ise kiralama taleplerimizin sonuçlarını görebiliyoruz. Kiralama talebimiz kabul edilebilir, reddedilebilir veya çalışan halen talebimizi inceliyor olabilir. Bu durumları bu ekrandan görebiliyoruz.
