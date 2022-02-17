@@ -52,3 +52,17 @@ Customer panel ve görevleri
 -
 - Cars ekranında tüm şirketlere ait araçların listesini görebiliyoruz. Aracın üzerine tıkladığımızda aracın bilgilerini detaylı olarak inceleyebiliyoruz ve kiralama talebinde bulunabiliyoruz.
 - Rent result ekranında ise kiralama taleplerimizin sonuçlarını görebiliyoruz. Kiralama talebimiz kabul edilebilir, reddedilebilir veya çalışan halen talebimizi inceliyor olabilir. Bu durumları bu ekrandan görebiliyoruz.
+
+# Projedeki eksiklikler ve yeni eklenmesi beklenen özellikler
+
+- Admin panelde dashboardda kiralama bilgilerini ver.
+- admin panelde employees kısmında company namede company id veriliyor onları name e çevir.
+- filtreleme seçeneklerini yap, yapamıyorsan ortadan kaldır.
+- Employee panelde sadece kendi arabalarını görebil, başka şirketin arabaları görünmesin.
+- Cars listelerinde kiralanma talebinde bulunulan ve kiralanmış araçları disable şeklinde göster.
+- Araç fotoğraf sorununu çöz
+- register olurken müşterinin tüm bilgilerini alıp kiralama taleb değerlendirilirken müşterinin özelliklerine uygunluğu kontrol edilmeli
+- kullanıcıların şifreleri admin tarafından değiştirilebilir.
+- kullanıcıların şifreleri kullanıcılar tarafından değiştirilebilir.
+- kullanıcılar twitter ile login yapabilir.
+- kullanıcıların hesapları adminler tarafından engellenebilir.
