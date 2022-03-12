@@ -101,6 +101,7 @@ export default function Employee() {
   const [filterName, setFilterName] = useState('');
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [employees, setEmployees] = useState([]);
+  const [companies, setCompanies] = useState([]);
   const [users, setUsers] = useState([]);
 
   const loadData = () => {
@@ -110,6 +111,10 @@ export default function Employee() {
     });
     Api.getUserList().then((response) => {
       setUsers(response.data);
+    });
+    Api.getCompanyList().then((response) => {
+      console.log(response.data);
+      setCompanies(response.data);
     });
   };
   useEffect(() => {
