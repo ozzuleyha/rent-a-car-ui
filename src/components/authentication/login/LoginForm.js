@@ -30,18 +30,22 @@ export default function LoginForm() {
         setPassword('');
       } else {
         console.log(response.data);
-        if (response.data[0].UserRoleId === 1) {
-          localStorage.setItem('userInformations', JSON.stringify(response.data[0]));
-          // bu bir müşteri
-          navigate('/dashboard/user/cars', { replace: true });
-        } else if (response.data[0].UserRoleId === 2) {
-          localStorage.setItem('userInformations', JSON.stringify(response.data[0]));
-          // bu bir çalışan
-          navigate('/dashboard/employee/rent-requests', { replace: true });
-        } else {
+        if (response.data[0].role_id === 1) {
           localStorage.setItem('userInformations', JSON.stringify(response.data[0]));
           // bu bir admin
-          navigate('/dashboard/admin/app', { replace: true });
+          navigate('/dashboard/admin/topluluk', { replace: true });
+        } else if (response.data[0].role_id === 2) {
+          localStorage.setItem('userInformations', JSON.stringify(response.data[0]));
+          // bu bir akademisyen
+          navigate('/dashboard/employee/rent-requests', { replace: true });
+        } else if (response.data[0].role_id === 3) {
+          localStorage.setItem('userInformations', JSON.stringify(response.data[0]));
+          navigate('/dashboard/yonetici/duyuru', { replace: true });
+          // bu bir yonetici
+        } else if (response.data[0].role_id === 4) {
+          localStorage.setItem('userInformations', JSON.stringify(response.data[0]));
+          // bu bir ogrenci
+          navigate('/dashboard/ogrenci/topluluk', { replace: true });
         }
       }
     });

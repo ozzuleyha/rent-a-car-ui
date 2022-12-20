@@ -53,7 +53,7 @@ function NavItem({ item, active }) {
   const theme = useTheme();
   const isActiveRoot = active(item.path);
   const { title, path, icon, userRole, info, children } = item;
-  console.log(JSON.parse(localStorage.getItem('userInformations')).UserRoleId);
+  console.log(JSON.parse(localStorage.getItem('userInformations')).role_id);
   const [open, setOpen] = useState(isActiveRoot);
 
   const handleOpen = () => {
@@ -135,7 +135,7 @@ function NavItem({ item, active }) {
     );
   }
 
-  return JSON.parse(localStorage.getItem('userInformations')).UserRoleId === userRole ? (
+  return JSON.parse(localStorage.getItem('userInformations')).role_id === userRole ? (
     <ListItemStyle
       component={RouterLink}
       to={path}

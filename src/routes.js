@@ -13,6 +13,9 @@ import Employee from './pages/Employee';
 import Company from './pages/Company';
 import RentResult from './pages/RentResult';
 import NotFound from './pages/Page404';
+import Topluluk from './pages/Topluluk';
+import Duyuru from './pages/Duyuru';
+import Akademisyen from './pages/Akademisyen';
 
 // ----------------------------------------------------------------------
 
@@ -22,8 +25,9 @@ export default function Router() {
       path: '/dashboard/admin',
       element: <DashboardLayout />,
       children: [
-        { element: <Navigate to="/dashboard/admin/app" replace /> },
-        { path: 'app', element: <DashboardApp /> },
+        { element: <Navigate to="/dashboard/admin/topluluk" replace /> },
+        { path: 'topluluk', element: <Topluluk /> },
+        { path: 'akademisyen', element: <Akademisyen /> },
         { path: 'user', element: <User /> },
         { path: 'employee', element: <Employee /> },
         { path: 'company', element: <Company /> }
@@ -39,12 +43,21 @@ export default function Router() {
       ]
     },
     {
-      path: '/dashboard/user',
+      path: '/dashboard/yonetici',
       element: <DashboardLayout />,
       children: [
-        { element: <Navigate to="/dashboard/user/cars" replace /> },
-        { path: 'cars', element: <Cars /> },
-        { path: 'rent-result', element: <RentResult /> }
+        { element: <Navigate to="/dashboard/yonetici/duyuru" replace /> },
+        { path: 'topluluk', element: <Topluluk /> },
+        { path: 'duyuru', element: <Duyuru /> }
+      ]
+    },
+    {
+      path: '/dashboard/ogrenci',
+      element: <DashboardLayout />,
+      children: [
+        { element: <Navigate to="/dashboard/ogrenci/topluluk" replace /> },
+        { path: 'topluluk', element: <Topluluk /> },
+        { path: 'duyuru', element: <Duyuru /> }
       ]
     },
     {

@@ -20,25 +20,20 @@ import Api from '../../../utils/Api';
 export default function RegisterForm() {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
-  const [username, setUsername] = useState();
-  const [password, setPassword] = useState();
-  const [lastname, setLastname] = useState();
-  const [firstname, setFirstname] = useState();
-  const [email, setEmail] = useState();
-  // const [birthday, setBirthday] = useState(new Date('2021-12-08'));
-  // const [drivinglicensedate, setDrivinglicensedate] = useState(new Date('2021-12-08'));
+  const [mail, setMail] = useState();
+  const [parola, setParola] = useState();
+  const [ad, setAd] = useState();
+  const [soyad, setSoyad] = useState();
+  const [roleId, setRoleId] = useState(4);
 
   const handleShowPassword = () => {
     setShowPassword((show) => !show);
   };
 
   const handleSubmit = () => {
-    console.log(username, password, firstname, lastname, email);
-    Api.addUserCustomer(username, password).then((response) => {
-      const userInformation = { UserRoleId: 1, CustomerName: firstname, CustomerSurname: lastname };
-      console.log(response.data);
-      Api.addCustomer(firstname, lastname, email);
-      navigate('/dashboard/user/cars', { replace: true });
+    Api.addUser(ad, soyad, mail, parola, roleId).then((response) => {
+      const userInformation = { role_id: 4, Ad: ad, Soyad: soyad };
+      navigate('/dashboard/ogrenci/topluluk', { replace: true });
       localStorage.setItem('userInformations', JSON.stringify(userInformation));
     });
   };
@@ -47,23 +42,16 @@ export default function RegisterForm() {
       <Stack spacing={3} sx={{ my: 2 }}>
         <TextField
           fullWidth
-          label="Username"
-          value={username}
-          onChange={(event) => setUsername(event.target.value)}
+          label="Ad"
+          value={ad}
+          onChange={(event) => setAd(event.target.value)}
         />
         <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
           <TextField
             fullWidth
-            label="First name"
-            value={firstname}
-            onChange={(event) => setFirstname(event.target.value)}
-          />
-
-          <TextField
-            fullWidth
-            label="Last name"
-            value={lastname}
-            onChange={(event) => setLastname(event.target.value)}
+            label="Soyad"
+            value={soyad}
+            onChange={(event) => setSoyad(event.target.value)}
           />
         </Stack>
         <TextField
@@ -71,16 +59,16 @@ export default function RegisterForm() {
           autoComplete="username"
           type="email"
           label="Email address"
-          value={email}
-          onChange={(event) => setEmail(event.target.value)}
+          value={mail}
+          onChange={(event) => setMail(event.target.value)}
         />
 
         <TextField
           fullWidth
           type={showPassword ? 'text' : 'password'}
-          label="Password"
-          value={password}
-          onChange={(event) => setPassword(event.target.value)}
+          label="Parola"
+          value={parola}
+          onChange={(event) => setParola(event.target.value)}
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
@@ -91,49 +79,6 @@ export default function RegisterForm() {
             )
           }}
         />
-
-        {/* <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
-          <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <DatePicker
-              fullWidth
-              label="Birthday"
-              inputFormat="MM/dd/yyyy"
-              value={birthday}
-              onChange={(newValue) => {
-                console.log(newValue);
-                const dateObject = new Date(newValue);
-                const formatDate =
-                  dateObject.getMonth() +
-                  '/' +
-                  dateObject.getDate() +
-                  '/' +
-                  dateObject.getFullYear();
-                setBirthday(formatDate);
-              }}
-              renderInput={(params) => <TextField {...params} />}
-            />
-          </LocalizationProvider>
-          <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <DatePicker
-              fullWidth
-              inputFormat="MM/dd/yyyy"
-              label="Driving License Date"
-              value={drivinglicensedate}
-              onChange={(newValue) => {
-                console.log(newValue);
-                const dateObject = new Date(newValue);
-                const formatDate =
-                  dateObject.getMonth() +
-                  '/' +
-                  dateObject.getDate() +
-                  '/' +
-                  dateObject.getFullYear();
-                setDrivinglicensedate(formatDate);
-              }}
-              renderInput={(params) => <TextField {...params} />}
-            />
-          </LocalizationProvider>
-        </Stack> */}
       </Stack>
 
       <LoadingButton

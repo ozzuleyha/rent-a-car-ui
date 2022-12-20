@@ -5,7 +5,7 @@ class Api {
   axiosInstance;
 
   constructor() {
-    const baseURL = 'http://localhost:38175/api/';
+    const baseURL = 'http://localhost:15547/api/';
     this.axiosInstance = axios.create({
       baseURL,
       timeout: 90000
@@ -13,20 +13,49 @@ class Api {
   }
 
   login = (username, password) =>
-    this.axiosInstance.post('User/login', { UserName: username, Password: password });
+    this.axiosInstance.post('Kullanici/login', { Mail: username, Parola: password });
 
-  addUserCustomer = (username, password) =>
-    this.axiosInstance.post('User/add-user', {
-      UserName: username,
-      Password: password,
-      UserRoleId: 1
+  addUser = (ad, soyad, mail, parola, roleId) =>
+    this.axiosInstance.post('Kullanici/add-user', {
+      Ad: ad,
+      Soyad: soyad,
+      Mail: mail,
+      Parola: parola,
+      RoleId: roleId
     });
+
+  deleteUser = (userId) =>
+    this.axiosInstance.delete('Kullanici/delete-kullanici', {
+      data: { Id: userId }
+    });
+
+  deleteTopluluk = (toplulukId) =>
+    this.axiosInstance.delete('Topluluk/delete-topluluk', {
+      data: { Id: toplulukId }
+    });
+
+  updateTopluluk = (toplulukId, toplulukAdi, akademisyenId, yoneticiId) =>
+    this.axiosInstance.put('Topluluk/update-topluluk', {
+      Id: toplulukId,
+      ToplulukAdi: toplulukAdi,
+      AkademisyenId: akademisyenId,
+      YoneticiKullaniciId: yoneticiId
+    });
+
+  getDuyuruList = () => this.axiosInstance.get('Duyuru/duyuru-list');
 
   addUserEmployee = (username, password) =>
     this.axiosInstance.post('User/add-user', {
       UserName: username,
       Password: password,
       UserRoleId: 2
+    });
+
+  addTopluluk = (akademisyenId, yoneticiId, toplulukAdi) =>
+    this.axiosInstance.post('Topluluk/add-topluluk', {
+      AkademisyenId: akademisyenId,
+      YoneticiKullaniciId: yoneticiId,
+      ToplulukAdi: toplulukAdi
     });
 
   addCustomer = (firstname, lastname, email) =>
@@ -152,6 +181,8 @@ class Api {
       }
     );
 
+  getAkademisyenList = () => this.axiosInstance.get('Kullanici/akademisyen-list');
+
   getCustomerCount = () => this.axiosInstance.get('Customer/customer-count');
 
   getEmployeeCount = () => this.axiosInstance.get('Employee/employee-count');
@@ -159,6 +190,8 @@ class Api {
   getCompanyCount = () => this.axiosInstance.get('Company/company-count');
 
   getCarCount = () => this.axiosInstance.get('Car/car-count');
+
+  getToplulukList = () => this.axiosInstance.get('Topluluk/topluluk-listesi');
 
   getUserList = () => this.axiosInstance.get('User/user-list');
 

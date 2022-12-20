@@ -12,26 +12,38 @@ import carFill from '@iconify/icons-eva/car-fill';
 const getIcon = (name) => <Icon icon={name} width={22} height={22} />;
 const sidebarConfig = [
   {
-    title: 'dashboard',
-    path: '/dashboard/admin/app',
+    title: 'topluluk',
+    path: '/dashboard/admin/topluluk',
     icon: getIcon(pieChart2Fill),
-    userRole: 3
+    userRole: 1
   },
   {
-    title: 'users',
-    path: '/dashboard/admin/user',
+    title: 'akademisyen',
+    path: '/dashboard/admin/akademisyen',
+    icon: getIcon(pieChart2Fill),
+    userRole: 1
+  },
+  {
+    title: 'topluluk',
+    path: '/dashboard/ogrenci/topluluk',
     icon: getIcon(peopleFill),
-    userRole: 3
+    userRole: 4
   },
   {
-    title: 'companies',
-    path: '/dashboard/admin/company',
+    title: 'duyurular',
+    path: '/dashboard/ogrenci/duyuru',
     icon: getIcon(companyFill),
+    userRole: 4
+  },
+  {
+    title: 'duyuru',
+    path: '/dashboard/yonetici/duyuru',
+    icon: getIcon(flashFill),
     userRole: 3
   },
   {
-    title: 'employees',
-    path: '/dashboard/admin/employee',
+    title: 'topluluk',
+    path: '/dashboard/yonetici/topluluk',
     icon: getIcon(flashFill),
     userRole: 3
   },
@@ -51,13 +63,13 @@ const sidebarConfig = [
     title: 'Cars',
     path: '/dashboard/user/cars',
     icon: getIcon(peopleFill),
-    userRole: 1
+    userRole: 2
   },
   {
     title: 'Rent Result',
     path: '/dashboard/user/rent-result',
     icon: getIcon(peopleFill),
-    userRole: 1
+    userRole: 2
   },
   {
     title: 'login',
